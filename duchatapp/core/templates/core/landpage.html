@@ -1,0 +1,168 @@
+{% comment %} 
+Author: K. Dushyant Reddy
+StudID: STU614f75ed0b64d1632597485
+Social: https://www.linkedin.com/in/kdushyantreddy, https://github.com/Dushyant029 
+{% endcomment %}
+
+{% extends "core/base.html" %} 
+{% block title %} LandingPage | {% endblock %} 
+
+{%block content %}
+
+<!-- Hero Section -->
+<div
+  class="container mx-auto mt-8 flex flex-col lg:flex-row items-center justify-between"
+>
+  <div class="lg:w-1/2 lg:pr-8 lg:ml-8">
+    <h1 class="text-4xl font-semibold mb-4">
+      Chat, Connect, and Collaborate with DuChat
+    </h1>
+    <p class="text-gray-600 mb-6">
+      DuChat is a messaging app that allows you to chat, connect, and
+      collaborate with friends, family, and colleagues
+    </p>
+    <a
+      href="#stay-connected"
+      class="bg-yellow-300 text-black py-2 px-4 rounded hover:bg-black hover:text-yellow-300"
+    >
+      Scroll Down <i class="fas fa-arrow-down"></i>
+    </a>
+  </div>
+  <div class="lg:w-1/2 mt-4 lg:mt-0">
+    <img
+      src="/static/assets/heroo.jpg"
+      alt="DuChat Hero Image"
+      class="rounded-lg shadow-md w-full"
+    />
+  </div>
+</div>
+
+<!-- Stay Connected Section -->
+<section
+  id="stay-connected"
+  class="container mx-auto mt-12 flex flex-col lg:flex-row items-center justify-between"
+>
+  <div class="lg:w-1/2 lg:pr-8 lg:ml-8">
+    <img
+      src="/static/assets/stay.jpg"
+      alt="Stay Connected Image"
+      class="rounded-lg shadow-md w-full mb-4 lg:mb-0"
+    />
+  </div>
+  <div class="lg:w-1/2">
+    <h2 class="text-3xl font-semibold mb-4">
+      Stay connected with your loved ones
+    </h2>
+    <p class="text-gray-600 mb-6">
+      DuChat helps you stay connected with your loved ones through seamless
+      messaging. Whether it's chatting with friends, staying in touch with
+      family, or collaborating with colleagues, DuChat makes communication easy
+      and convenient.
+    </p>
+  </div>
+</section>
+
+<!-- Collaborate Section -->
+<section
+  class="container mx-auto mt-12 flex flex-col lg:flex-row items-center justify-between"
+>
+  <div class="lg:w-1/2 lg:pr-8 lg:ml-8">
+    <h2 class="text-3xl font-semibold mb-4">
+      Collaborate on projects effortlessly
+    </h2>
+    <p class="text-gray-600 mb-6">
+      With DuChat, you can collaborate on projects effortlessly. Share files,
+      create group chats, and stay organized with features designed to enhance
+      productivity. No more email chains or scattered conversations - DuChat
+      keeps everything in one place.
+    </p>
+  </div>
+  <div class="lg:w-1/2">
+    <img
+      src="/static/assets/colab.jpg"
+      alt="Collaborate Image"
+      class="rounded-lg shadow-md w-full mb-4 lg:mb-0"
+    />
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section
+  id="contact"
+  class="container mx-auto mt-12 px-4 lg:px-0 mb-8 lg:ml-8 lg:w-full flex justify-center"
+>
+  <div class="lg:w-1/2">
+    <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
+    <p class="text-gray-600 mb-6">
+      Have a question or feedback? Reach out to us!
+    </p>
+
+    <!-- Contact Form (Placeholder) -->
+    <form class="max-w-md mx-auto">
+      <!-- Add your form fields here -->
+      <div class="mb-4">
+        <label for="name" class="block text-gray-600">Your Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="w-full border rounded px-3 py-2"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-gray-600">Your Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="w-full border rounded px-3 py-2"
+        />
+      </div>
+      <div class="mb-4">
+        <label for="message" class="block text-gray-600">Your Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          class="w-full border rounded px-3 py-2"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="bg-yellow-300 text-black py-2 px-4 rounded hover:bg-gray-300 w-full lg:w-auto"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-black text-white p-8">
+  <div class="container mx-auto">
+    <div class="flex flex-col lg:flex-row items-center justify-between">
+      <div class="mb-8 lg:mb-0 lg:mr-4">
+        <p class="text-xl font-semibold">DuChat</p>
+        <p class="text-gray-500">Connect. Chat. Collaborate.</p>
+      </div>
+      <div class="mb-8 lg:mb-0 lg:mr-4">
+        <p class="text-xl font-semibold">Contact Us</p>
+        <p class="text-gray-500">Email: info@DuChat.com</p>
+        <p class="text-gray-500">Phone: +91 1234567890</p>
+      </div>
+      <div class="mb-8 lg:mb-0 lg:mr-4">
+        <p class="text-xl font-semibold">Follow Us</p>
+        <div class="flex">
+          <a href="https://www.linkedin.com/in/kdushyantreddy" target="_blank" class="text-gray-500 hover:text-gray-300 ml-4">LinkedIn</a>
+          <a href="https://github.com/Dushyant029" target="_blank" class="text-gray-500 hover:text-gray-300 ml-4">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <p class="text-xl font-semibold">
+        Built with <i class="far fa-grin-hearts"></i> by K. Dushyant Reddy
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock %}

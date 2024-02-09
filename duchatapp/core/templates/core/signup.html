@@ -1,0 +1,79 @@
+{% comment %} 
+Author: K. Dushyant Reddy
+StudID: STU614f75ed0b64d1632597485
+Social: https://www.linkedin.com/in/kdushyantreddy, https://github.com/Dushyant029 
+{% endcomment %}
+
+{% extends "core/base.html" %} 
+
+{% block title %} Sign Up | {% endblock %} 
+
+{%block content %}
+
+<div class="container mx-auto mt-8 flex justify-center items-center">
+  <div
+    class="max-w-screen-xl bg-white rounded p-8 shadow-md flex items-center space-x-8"
+  >
+    <div class="flex-1">
+      <h2 class="text-2xl font-semibold mb-6 text-center">Sign Up</h2>
+      <form method="post" action="." class="space-y-4">
+        {% csrf_token %}
+
+        <div>
+          <label class="block text-gray-600">Username</label>
+          <input
+            type="text"
+            name="username"
+            class="w-full border rounded px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label class="block text-gray-600">Password</label>
+          <input
+            type="password"
+            name="password1"
+            class="w-full border rounded px-3 py-2"
+          />
+        </div>
+
+        <div>
+          <label class="block text-gray-600"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            name="password2"
+            class="w-full border rounded px-3 py-2"
+          />
+        </div>
+
+        {% if form.errors %} 
+            {% for field in form %} 
+                {% for error in field.errors %}
+                    <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+                        <p>{{ error|escape }}</p>
+                    </div>
+                {% endfor %} 
+            {% endfor %}
+        {% endif %}
+
+        <button
+          type="submit"
+          class="bg-yellow-300 text-black py-2 px-4 rounded hover:bg-black hover:text-yellow-300 w-full"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+    <div class="hidden lg:flex lg:w-1/2">
+      <img
+        src="/static/assets/sign.jpg"
+        alt="Illustration"
+        class="w-full h-96 object-cover rounded-lg shadow-md"
+      />
+    </div>
+  </div>
+</div>
+
+{% endblock %}

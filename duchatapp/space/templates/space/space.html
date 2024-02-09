@@ -1,0 +1,122 @@
+{% comment %} 
+Author: K. Dushyant Reddy
+StudID: STU614f75ed0b64d1632597485
+Social: https://www.linkedin.com/in/kdushyantreddy, https://github.com/Dushyant029  
+{% endcomment %}
+
+{% extends 'core/base.html' %}
+
+{% block title %}{{ space.name }} | {% endblock %}
+
+{% block content %}
+<div class="container mx-auto mt-8 flex flex-col lg:flex-row items-center justify-between">
+    <div class="lg:w-1/2 lg:pr-8 lg:ml-8">
+        <h1 class="text-4xl font-semibold mb-4 text-black">
+            {{ space.name }}
+        </h1>
+    </div>
+
+    <!-- Chatbox UI -->
+    <div class="lg:w-1/2 lg:pl-8 lg:mr-8 flex flex-col">
+        <!-- Left Side (Space Name) -->
+        <div class="bg-yellow-300 p-4 rounded-md mb-4">
+            <h2 class="text-xl font-semibold text-black">
+                {{ space.name }}
+            </h2>
+        </div>
+
+        <!-- Right Side (Chat Area) -->
+        <div class="flex flex-col bg-white p-4 rounded-md">
+            <!-- Message Box -->
+            <div class="border-b-2 pb-4 mb-4">
+                <!-- Chat Messages Go Here -->
+                <div id="chat-messages" class="auto space-y-3">
+                    {% for message in messages %}
+                    <div class="p-4 bg-gray-100 rounded-xl">
+                        <p class="font-semibold">{{ message.user.username }}</p>
+                        <p>{{ message.content }}</p>
+                    </div> 
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Input Box -->
+            <div class="flex items-center">
+              <form method="post" action="." class="flex">
+                <input  id="chat-message-input"  name="content" type="text" placeholder="Type a message" class="flex-grow border border-black p-2 rounded-l-md focus:outline-none">
+                <button id="chat-message-submit" class="bg-yellow-300 text-black p-2 rounded-r-md focus:outline-none hover:bg-black hover:text-yellow-300">Send</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ space.slug|json_script:"json-spacename" }}
+{{ request.user.username|json_script:"json-username" }}
+
+<script>
+    const spaceName = JSON.parse(document.getElementById('json-spacename').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + spaceName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        console.log('onmessage')
+
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            let html = '<div class="p-4 bg-gray-200 rounded-xl">';
+                html += '<p class="font-semibold">' + data.username + '</p>';
+                html += '<p>' + data.message + '</p></div>';
+
+            document.querySelector('#chat-messages').innerHTML += html;
+
+            scrollToBottom();
+        } else {
+            alert('The message was empty!');
+        }
+    }
+
+    chatSocket.onclose = function(e) {
+        console.log('onclose')
+    }
+
+    //
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        e.preventDefault();
+
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'space': spaceName
+        }));
+
+        messageInputDom.value = '';
+
+        return false;
+    }
+
+    //
+
+    function scrollToBottom() {
+        const objDiv = document.querySelector('#chat-messages');
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    scrollToBottom();
+</script>
+{% endblock %}
